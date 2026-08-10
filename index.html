@@ -1,73 +1,720 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>치매 관리의 핵심은 “치료보다는 정기검진 통한 예방” - 헤럴드경제</title>
-    <style>
-        body { font-family: 'Malgun Gothic', dotum, sans-serif; line-height: 1.8; color: #333; margin: 0; padding: 0; background-color: #f4f4f4; }
-        header { background-color: #fff; border-bottom: 2px solid #005a96; padding: 10px 20px; display: flex; align-items: center; position: sticky; top: 0; z-index: 1000; }
-        .logo-img { max-height: 40px; width: auto; display: block; }
-        .container { max-width: 800px; margin: 30px auto; background: #fff; padding: 40px; box-shadow: 0 0 10px rgba(0,0,0,0.1); }
-        .category { color: #005a96; font-weight: bold; margin-bottom: 10px; }
-        h1 { font-size: 28px; line-height: 1.3; margin-bottom: 20px; color: #000; letter-spacing: -1px; }
-        .meta { font-size: 14px; color: #666; border-bottom: 1px solid #eee; padding-bottom: 15px; margin-bottom: 25px; }
-        
-        .main-image-box { margin-bottom: 30px; text-align: center; }
-        .main-image-box img { width: 100%; max-width: 750px; height: auto; border-radius: 4px; }
-        .image-caption { font-size: 14px; color: #666; margin-top: 10px; line-height: 1.4; text-align: left; background: #f9f9f9; padding: 10px; border-left: 3px solid #005a96; }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>부모님과 함께, 5분 기억 체크 | 경일신경과</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@500;700;900&family=Noto+Sans+KR:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#EEF0E9;
+    --card:#FFFFFF;
+    --ink:#23302B;
+    --ink-soft:#5B685F;
+    --teal:#2F6459;
+    --teal-dark:#204A42;
+    --amber:#C98A3E;
+    --brick:#B0503C;
+    --line:#D8DED2;
+    --radius:14px;
+  }
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0;}
+  body{
+    background:var(--paper);
+    color:var(--ink);
+    font-family:'Noto Sans KR',sans-serif;
+    min-height:100vh;
+    display:flex;
+    justify-content:center;
+    -webkit-font-smoothing:antialiased;
+  }
+  .app{
+    width:100%;
+    max-width:480px;
+    min-height:100vh;
+    background:var(--paper);
+    display:flex;
+    flex-direction:column;
+    position:relative;
+  }
 
-        .content { font-size: 17px; color: #333; word-break: break-all; }
-        .content p { margin-bottom: 25px; }
-        
-        /* 추가된 안내문구 및 링크 스타일 */
-        .article-footer { margin-top: 40px; padding: 20px; background-color: #f9f9f9; border: 1px solid #eee; font-size: 15px; color: #555; }
-        .article-footer a { color: #005a96; font-weight: bold; text-decoration: underline; }
+  .topbar{
+    padding:20px 24px 12px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+  }
+  .brand{
+    font-size:12px;
+    letter-spacing:0.12em;
+    color:var(--teal-dark);
+    font-weight:700;
+  }
+  .progress{
+    display:flex;
+    gap:6px;
+  }
+  .dot{
+    width:22px;
+    height:4px;
+    border-radius:2px;
+    background:var(--line);
+    transition:background .3s ease;
+  }
+  .dot.active{background:var(--teal);}
 
-        footer { text-align: center; padding: 30px; font-size: 12px; color: #888; border-top: 1px solid #eee; margin-top: 50px; }
-    </style>
+  .stage{
+    flex:1;
+    padding:8px 24px 40px;
+    display:none;
+    flex-direction:column;
+    animation:fade .35s ease;
+  }
+  .stage.visible{display:flex;}
+  @keyframes fade{from{opacity:0;transform:translateY(6px);}to{opacity:1;transform:translateY(0);}}
+
+  .stamp{
+    align-self:flex-start;
+    display:flex;
+    align-items:center;
+    gap:8px;
+    padding:6px 14px 6px 6px;
+    border:1.5px solid var(--teal);
+    border-radius:999px;
+    margin-bottom:18px;
+  }
+  .stamp .circle{
+    width:24px;height:24px;border-radius:50%;
+    background:var(--teal);
+    color:#fff;
+    display:flex;align-items:center;justify-content:center;
+    font-family:'Noto Serif KR',serif;
+    font-weight:700;
+    font-size:12px;
+  }
+  .stamp span.label{
+    font-size:12px;
+    font-weight:700;
+    color:var(--teal-dark);
+    letter-spacing:0.04em;
+  }
+
+  h1{
+    font-family:'Noto Serif KR',serif;
+    font-weight:900;
+    font-size:28px;
+    line-height:1.35;
+    margin:0 0 14px;
+    color:var(--ink);
+  }
+  .lede{
+    font-size:15px;
+    line-height:1.7;
+    color:var(--ink-soft);
+    margin:0 0 26px;
+  }
+  .disclaimer{
+    font-size:12px;
+    color:var(--ink-soft);
+    line-height:1.6;
+    background:rgba(0,0,0,0.03);
+    border-left:3px solid var(--line);
+    padding:10px 14px;
+    margin:18px 0 0;
+    border-radius:4px;
+  }
+
+  .card{
+    background:var(--card);
+    border:1px solid var(--line);
+    border-radius:var(--radius);
+    padding:20px 20px 18px;
+    margin-bottom:14px;
+  }
+  .q-num{
+    font-family:'Noto Serif KR',serif;
+    font-size:12px;
+    color:var(--teal);
+    font-weight:700;
+    letter-spacing:0.08em;
+    margin-bottom:6px;
+  }
+  .q-text{
+    font-size:16px;
+    font-weight:600;
+    line-height:1.5;
+    margin-bottom:14px;
+  }
+  .q-help{
+    font-size:13px;
+    color:var(--ink-soft);
+    margin:-8px 0 14px;
+    line-height:1.6;
+  }
+
+  .options{
+    display:flex;
+    flex-direction:column;
+    gap:8px;
+  }
+  .opt{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    padding:12px 14px;
+    border:1.5px solid var(--line);
+    border-radius:10px;
+    cursor:pointer;
+    font-size:14px;
+    transition:border-color .15s ease, background .15s ease;
+    user-select:none;
+  }
+  .opt:hover{border-color:var(--teal);}
+  .opt input{accent-color:var(--teal);width:16px;height:16px;flex:none;}
+  .opt.checked{border-color:var(--teal);background:#F1F6F4;font-weight:600;}
+
+  .row-inline{display:flex;gap:8px;}
+  select, input[type=number]{
+    font-family:'Noto Sans KR',sans-serif;
+    font-size:15px;
+    padding:12px 10px;
+    border:1.5px solid var(--line);
+    border-radius:10px;
+    background:#fff;
+    color:var(--ink);
+    flex:1;
+  }
+  select:focus, input:focus{outline:2px solid var(--teal);outline-offset:1px;}
+
+  .word-box{
+    display:flex;
+    gap:10px;
+    margin:6px 0 4px;
+    flex-wrap:wrap;
+  }
+  .word-chip{
+    font-family:'Noto Serif KR',serif;
+    font-weight:700;
+    font-size:15px;
+    background:var(--paper);
+    border:1.5px solid var(--teal);
+    color:var(--teal-dark);
+    padding:8px 16px;
+    border-radius:8px;
+  }
+
+  .nav{
+    margin-top:auto;
+    padding-top:10px;
+    display:flex;
+    gap:10px;
+  }
+  button.btn{
+    font-family:'Noto Sans KR',sans-serif;
+    font-size:15px;
+    font-weight:700;
+    padding:14px 20px;
+    border-radius:10px;
+    border:none;
+    cursor:pointer;
+    flex:1;
+    transition:transform .1s ease, opacity .15s ease;
+  }
+  button.btn:active{transform:scale(0.98);}
+  .btn-primary{background:var(--teal);color:#fff;}
+  .btn-primary:disabled{opacity:0.4;cursor:not-allowed;}
+  .btn-ghost{background:transparent;color:var(--ink-soft);border:1.5px solid var(--line);flex:0 0 auto;padding:14px 18px;}
+
+  .result-badge{
+    font-family:'Noto Serif KR',serif;
+    font-weight:900;
+    font-size:34px;
+    padding:26px 22px;
+    border-radius:var(--radius);
+    margin-bottom:18px;
+    color:#fff;
+  }
+  .result-badge .tag{
+    display:block;
+    font-family:'Noto Sans KR',sans-serif;
+    font-size:12px;
+    font-weight:700;
+    letter-spacing:0.1em;
+    opacity:0.85;
+    margin-bottom:8px;
+  }
+  .tier-0{background:linear-gradient(135deg,var(--teal),var(--teal-dark));}
+  .tier-1{background:linear-gradient(135deg,#D9A15A,var(--amber));}
+  .tier-2{background:linear-gradient(135deg,#C86A4A,var(--brick));}
+  .tier-3{background:linear-gradient(135deg,#A8402D,#7E2C1E);}
+
+  .result-msg{
+    font-size:15px;
+    line-height:1.7;
+    color:var(--ink);
+    margin-bottom:20px;
+  }
+  .clinic-card{
+    background:var(--card);
+    border:1.5px solid var(--teal);
+    border-radius:var(--radius);
+    padding:18px 20px;
+    margin-bottom:16px;
+  }
+  .clinic-card .name{
+    font-family:'Noto Serif KR',serif;
+    font-weight:700;
+    font-size:17px;
+    color:var(--teal-dark);
+    margin-bottom:6px;
+  }
+  .clinic-card .info{
+    font-size:13px;
+    color:var(--ink-soft);
+    line-height:1.7;
+  }
+  .share-btn{
+    width:100%;
+    background:transparent;
+    border:1.5px solid var(--line);
+    color:var(--ink-soft);
+    font-size:14px;
+    font-weight:600;
+    padding:13px;
+    border-radius:10px;
+    cursor:pointer;
+    margin-bottom:10px;
+  }
+  .restart{
+    text-align:center;
+    font-size:13px;
+    color:var(--ink-soft);
+    text-decoration:underline;
+    cursor:pointer;
+    margin-top:6px;
+  }
+
+  .footer-note{
+    font-size:11px;
+    color:var(--ink-soft);
+    text-align:center;
+    padding:16px 24px 24px;
+    line-height:1.6;
+  }
+</style>
 </head>
 <body>
+<div class="app">
 
-<header>
-    <a href="#" style="text-decoration: none;">
-        <img src="logo.png" alt="헤럴드경제 로고" class="logo-img">
-    </a>
-</header>
+  <div class="topbar">
+    <div class="brand">경일신경과 · 기억 체크</div>
+    <div class="progress" id="progressDots"></div>
+  </div>
 
-<div class="container">
-    <div class="category">중기·바이오</div>
-    <h1>치매 관리의 핵심은 “치료보다는 정기검진 통한 예방”</h1>
-    
-    <div class="meta">
-        입력 2026-03-24 17:19:35 | 김태열 기자
+  <!-- STAGE 0: 인트로 -->
+  <div class="stage visible" data-stage="0">
+    <div class="stamp"><div class="circle">今</div><span class="label">오늘, 5분</span></div>
+    <h1>부모님과 함께,<br>5분 기억 체크</h1>
+    <p class="lede">짧은 질문 몇 가지로 오늘의 기억력을 살펴봐요.<br>자녀분이 옆에서 함께 읽고, 부모님이 답해주시면 됩니다.</p>
+    <div class="disclaimer">이 체크는 의학적 진단이 아닌 참고용 선별 도구입니다. 정확한 진단은 전문의 상담을 통해 받으시기 바랍니다.</div>
+    <div class="nav">
+      <button class="btn btn-primary" onclick="goTo(1)">시작하기</button>
     </div>
+  </div>
 
-    <div class="main-image-box">
-        <img src="content_img.PNG" alt="경일신경과내과의원 건물 외관">
-        <p class="image-caption">
-            ▲ 치매는 완치가 어려운 질환이지만 조기에 발견하면 진행 속도를 늦추고 오랫동안 독립적인 생활을 유지하는 데 도움을 받을 수 있다. (사진은 경일신경과내과의원 외관)
-        </p>
+  <!-- STAGE 1: 보호자 관찰 체크리스트 -->
+  <div class="stage" data-stage="1">
+    <div class="stamp"><div class="circle">1</div><span class="label">STEP 1 · 요즘 어떠셨나요</span></div>
+    <h1 style="font-size:22px;">최근 몇 달, 부모님을 지켜보며</h1>
+    <p class="lede">느끼신 점을 편하게 체크해주세요.</p>
+    <div id="checklistArea"></div>
+    <div class="nav">
+      <button class="btn btn-ghost" onclick="goTo(0)">이전</button>
+      <button class="btn btn-primary" id="step1Next" onclick="goTo(2)" disabled>다음</button>
     </div>
+  </div>
 
-    <div class="content">
-        <p><strong>[헤럴드경제=김태열 건강의학 선임기자]</strong> 초고령사회에 접어들면서 치매 질환이 사회 전체가 함께 고민해야 할 건강 문제로 떠오르고 있다. 치매는 발병 이후 점차 일상생활 수행 능력을 잃게 만드는 질환으로 환자 본인뿐만 아니라 가족에게도 신체적·정신적·경제적 부담을 동시에 안겨준다. 무엇보다 아직까지 치매를 완전히 치료하는 방법이 없다는 점에서 조기 발견 및 예방의 중요성이 강조되고 있다.</p>
-
-        <p>치매는 하나의 질환이라기보다 다양한 원인에 의해 뇌 기능이 손상되면서 기억력, 언어능력, 판단력 등 여러 인지 기능이 저하되는 상태를 의미하는 임상 증후군이다. 대표적인 원인 질환은 알츠하이머병이며 이 외에도 뇌졸중 등에 의해 발생하는 혈관성 치매, 루이소체 치매, 전측두엽 치매 등 다양한 유형이 존재한다.</p>
-
-        <p>경일신경과내과의원 김숙희 원장은 “치매 관리의 핵심은 치료보다 예방에 있는데 증상이 나타난 이후의 대응보다 위험 신호를 미리 발견하고 정기적인 검진을 통해 인지 기능 변화를 확인하는 것이 무엇보다 중요하다”며 “이처럼 치매는 갑자기 시작되는 질환이 아니라 오랜 시간에 걸쳐 진행되는 질환인 만큼 사전 검진과 예방적 관리가 건강한 노년을 지키는 가장 현실적인 방법이라 할 수 있다”고 전했다.</p>
-        
-        <div class="article-footer">
-            본 콘텐츠는 경일신경과내과의원 김숙희 원장님의 헤럴드경제 인터뷰 보도 자료를 기반으로 발췌, 재구성 하였습니다. 기사전문은 아래를 통해 확인하실 수 있습니다. <br>
-            <a href="https://biz.heraldcorp.com/article/10701657" target="_blank">[기사 원문보기]</a>
-        </div>
+  <!-- STAGE 2: 함께 풀어보는 문제 -->
+  <div class="stage" data-stage="2">
+    <div class="stamp"><div class="circle">2</div><span class="label">STEP 2 · 함께 풀어봐요</span></div>
+    <h1 style="font-size:22px;">자녀분이 소리 내어 읽고,</h1>
+    <p class="lede">부모님이 답해주시면 자녀분이 체크해주세요.</p>
+    <div id="quizArea"></div>
+    <div class="nav">
+      <button class="btn btn-ghost" onclick="goTo(1)">이전</button>
+      <button class="btn btn-primary" id="step2Next" onclick="showResult()" disabled>결과 보기</button>
     </div>
+  </div>
+
+  <!-- STAGE 3: 결과 -->
+  <div class="stage" data-stage="3">
+    <div id="resultArea"></div>
+  </div>
+
+  <div class="footer-note">경일신경과 · 이 콘텐츠는 조기 관심 유도를 위한 참고용 자료입니다</div>
 </div>
 
-<footer>
-    Copyright Herald Corporation. All Rights Reserved.</p>
-</footer>
+<script>
+/* ---------------- 상태 ---------------- */
+let currentStage = 0;
+const TOTAL_STAGES = 4;
+let checklistScore = 0; // 0~12
+let quizScore = 0;      // 위험 점수 누적
 
-    
+function goTo(stage){
+  document.querySelectorAll('.stage').forEach(s=>s.classList.remove('visible'));
+  document.querySelector(`.stage[data-stage="${stage}"]`).classList.add('visible');
+  currentStage = stage;
+  renderDots();
+  window.scrollTo(0,0);
+}
+
+function renderDots(){
+  const wrap = document.getElementById('progressDots');
+  wrap.innerHTML = '';
+  for(let i=1;i<TOTAL_STAGES-1;i++){
+    const d = document.createElement('div');
+    d.className = 'dot' + (i<=currentStage ? ' active':'');
+    wrap.appendChild(d);
+  }
+}
+renderDots();
+
+/* ---------------- STEP 1: 체크리스트 ---------------- */
+const checklistItems = [
+  "같은 질문을 반복해서 하신다",
+  "물건을 둔 곳을 자주 잊으신다",
+  "약속이나 일정을 잊으신 적이 있다",
+  "익숙한 길에서 헤매신 적이 있다",
+  "대화 중 단어를 찾기 어려워하신다",
+  "계산이나 돈 관리를 어려워하신다"
+];
+const scaleOptions = [
+  {label:"전혀 아니다", val:0},
+  {label:"가끔 그렇다", val:1},
+  {label:"자주 그렇다", val:2}
+];
+let checklistAnswers = new Array(checklistItems.length).fill(null);
+
+function renderChecklist(){
+  const area = document.getElementById('checklistArea');
+  area.innerHTML = '';
+  checklistItems.forEach((q, idx)=>{
+    const card = document.createElement('div');
+    card.className = 'card';
+    card.innerHTML = `
+      <div class="q-num">Q${idx+1}</div>
+      <div class="q-text">${q}</div>
+      <div class="options" data-idx="${idx}">
+        ${scaleOptions.map((o,oi)=>`
+          <label class="opt" data-val="${o.val}">
+            <input type="radio" name="chk${idx}" value="${o.val}">
+            ${o.label}
+          </label>`).join('')}
+      </div>
+    `;
+    area.appendChild(card);
+  });
+
+  area.querySelectorAll('.options').forEach(group=>{
+    const idx = +group.dataset.idx;
+    group.querySelectorAll('.opt').forEach(opt=>{
+      opt.addEventListener('click', ()=>{
+        group.querySelectorAll('.opt').forEach(o=>o.classList.remove('checked'));
+        opt.classList.add('checked');
+        opt.querySelector('input').checked = true;
+        checklistAnswers[idx] = +opt.dataset.val;
+        checkStep1Complete();
+      });
+    });
+  });
+}
+function checkStep1Complete(){
+  const done = checklistAnswers.every(v=>v!==null);
+  document.getElementById('step1Next').disabled = !done;
+  if(done){
+    checklistScore = checklistAnswers.reduce((a,b)=>a+b,0);
+  }
+}
+renderChecklist();
+
+/* ---------------- STEP 2: 인지 문항 ---------------- */
+/* 단어는 K-MMSE 등록 문항(예: 비행기·연필·소나무 계열)과 겹치지 않도록 선정 */
+const today = new Date();
+const seasons = ["겨울","겨울","봄","봄","봄","여름","여름","여름","가을","가을","가을","겨울"];
+const correctSeason = seasons[today.getMonth()];
+const memWords = ["우산","딸기","냉장고"];
+let recallChecked = [false,false,false];
+
+let quizAnswers = { date:false, season:false, recall:0, calc:false, name:null };
+
+function renderQuiz(){
+  const area = document.getElementById('quizArea');
+  area.innerHTML = `
+    <div class="card">
+      <div class="q-num">Q1 · 기억력</div>
+      <div class="q-text">아래 세 단어를 부모님께 들려주고, 그대로 따라 말씀해 보시라고 해주세요. 그대로 따라 말씀하셨다면 조금 이따 여쭤볼 것이니 기억해두라고 하세요.</div>
+      <div class="word-box">${memWords.map(w=>`<span class="word-chip">${w}</span>`).join('')}</div>
+      <p class="q-help" style="margin-top:14px;">이 단어는 잠시 후 Q5에서 다시 여쭤볼게요. 지금은 외우고 계시라고만 안내해주세요.</p>
+      <div class="options" id="registerOpts">
+        <label class="opt" data-val="yes"><input type="radio" name="registerCheck">예, 세 단어 모두 따라 말씀하셨어요</label>
+        <label class="opt" data-val="no"><input type="radio" name="registerCheck">아니요, 일부만 말씀하시거나 어려워하셨어요</label>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="q-num">Q2 · 지남력(날짜)</div>
+      <div class="q-text">오늘은 몇 년 몇 월 며칠인가요?</div>
+      <div class="row-inline">
+        <select id="dYear"></select>
+        <select id="dMonth"></select>
+        <select id="dDay"></select>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="q-num">Q3 · 지남력(계절)</div>
+      <div class="q-text">지금은 어느 계절인가요?</div>
+      <div class="options" id="seasonOpts">
+        ${["봄","여름","가을","겨울"].map(s=>`<label class="opt" data-val="${s}"><input type="radio" name="season">${s}</label>`).join('')}
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="q-num">Q4 · 주의집중</div>
+      <div class="q-text">100에서 7을 빼면 얼마인가요?</div>
+      <input type="number" id="calcInput" placeholder="숫자를 입력해주세요">
+    </div>
+
+    <div class="card">
+      <div class="q-num">Q5 · 지연회상</div>
+      <div class="q-text">아까 기억하라고 했던 단어를 여쭤보세요. 기억하고 계신가요?</div>
+      <p class="q-help">힌트 없이 부모님이 직접 말씀하신 단어에 체크해주세요.</p>
+      <div class="options" id="recallOpts">
+        ${memWords.map((w,i)=>`<label class="opt" data-i="${i}"><input type="checkbox">${w}</label>`).join('')}
+      </div>
+      <div class="options" style="margin-top:10px;">
+        <label class="opt" id="recallNoneOpt"><input type="checkbox" id="recallNoneCheck">전혀 기억하지 못하셨어요</label>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="q-num">Q6 · 언어</div>
+      <div class="q-text">본인과 자녀분의 이름을 정확히 말씀하셨나요?</div>
+      <div class="options" id="nameOpts">
+        <label class="opt" data-val="yes"><input type="radio" name="nameCheck">예, 정확했어요</label>
+        <label class="opt" data-val="no"><input type="radio" name="nameCheck">아니요, 어려워하셨어요</label>
+      </div>
+    </div>
+  `;
+
+  // 단어 등록
+  document.querySelectorAll('#registerOpts .opt').forEach(opt=>{
+    opt.addEventListener('click', ()=>{
+      document.querySelectorAll('#registerOpts .opt').forEach(o=>o.classList.remove('checked'));
+      opt.classList.add('checked');
+      opt.querySelector('input').checked = true;
+      quizAnswers.register = (opt.dataset.val === 'yes');
+      quizAnswers._registerAnswered = true;
+      checkStep2Complete();
+    });
+  });
+
+  // 날짜 드롭다운 채우기
+  const yearSel = document.getElementById('dYear');
+  const monthSel = document.getElementById('dMonth');
+  const daySel = document.getElementById('dDay');
+  const thisYear = today.getFullYear();
+  yearSel.innerHTML = `<option value="">연도</option>` + Array.from({length:31},(_,i)=>thisYear-25+i).map(y=>`<option value="${y}">${y}년</option>`).join('');
+  monthSel.innerHTML = `<option value="">월</option>` + Array.from({length:12},(_,i)=>i+1).map(m=>`<option value="${m}">${m}월</option>`).join('');
+  daySel.innerHTML = `<option value="">일</option>` + Array.from({length:31},(_,i)=>i+1).map(d=>`<option value="${d}">${d}일</option>`).join('');
+
+  [yearSel,monthSel,daySel].forEach(sel=>sel.addEventListener('change', evaluateDate));
+
+  function evaluateDate(){
+    if(yearSel.value && monthSel.value && daySel.value){
+      const isCorrect = (+yearSel.value === today.getFullYear()) &&
+                         (+monthSel.value === today.getMonth()+1) &&
+                         (+daySel.value === today.getDate());
+      quizAnswers.date = isCorrect;
+      quizAnswers._dateAnswered = true;
+      checkStep2Complete();
+    }
+  }
+
+  // 계절
+  document.querySelectorAll('#seasonOpts .opt').forEach(opt=>{
+    opt.addEventListener('click', ()=>{
+      document.querySelectorAll('#seasonOpts .opt').forEach(o=>o.classList.remove('checked'));
+      opt.classList.add('checked');
+      opt.querySelector('input').checked = true;
+      quizAnswers.season = (opt.dataset.val === correctSeason);
+      quizAnswers._seasonAnswered = true;
+      checkStep2Complete();
+    });
+  });
+
+  // 계산
+  document.getElementById('calcInput').addEventListener('input', (e)=>{
+    quizAnswers.calc = (+e.target.value === 93);
+    quizAnswers._calcAnswered = e.target.value !== '';
+    checkStep2Complete();
+  });
+
+  // 단어 회상
+  document.querySelectorAll('#recallOpts .opt').forEach(opt=>{
+    opt.addEventListener('click', ()=>{
+      opt.classList.toggle('checked');
+      const cb = opt.querySelector('input');
+      cb.checked = !cb.checked;
+      recallChecked[+opt.dataset.i] = cb.checked;
+      quizAnswers.recall = recallChecked.filter(Boolean).length;
+      quizAnswers._recallAnswered = true;
+      // 단어를 하나라도 선택하면 '기억 못함' 선택은 자동 해제
+      if(cb.checked){
+        document.getElementById('recallNoneOpt').classList.remove('checked');
+        document.getElementById('recallNoneCheck').checked = false;
+      }
+      checkStep2Complete();
+    });
+  });
+
+  // 전혀 기억하지 못함
+  document.getElementById('recallNoneOpt').addEventListener('click', ()=>{
+    const noneCb = document.getElementById('recallNoneCheck');
+    const nowChecked = !noneCb.checked;
+    noneCb.checked = nowChecked;
+    document.getElementById('recallNoneOpt').classList.toggle('checked', nowChecked);
+    if(nowChecked){
+      // 개별 단어 체크는 모두 해제
+      recallChecked = [false,false,false];
+      document.querySelectorAll('#recallOpts .opt').forEach(o=>{
+        o.classList.remove('checked');
+        o.querySelector('input').checked = false;
+      });
+      quizAnswers.recall = 0;
+      quizAnswers._recallAnswered = true;
+    } else {
+      quizAnswers._recallAnswered = recallChecked.some(Boolean);
+    }
+    checkStep2Complete();
+  });
+
+  // 이름
+  document.querySelectorAll('#nameOpts .opt').forEach(opt=>{
+    opt.addEventListener('click', ()=>{
+      document.querySelectorAll('#nameOpts .opt').forEach(o=>o.classList.remove('checked'));
+      opt.classList.add('checked');
+      opt.querySelector('input').checked = true;
+      quizAnswers.name = opt.dataset.val;
+      checkStep2Complete();
+    });
+  });
+}
+renderQuiz();
+
+function checkStep2Complete(){
+  const done = quizAnswers._registerAnswered && quizAnswers._dateAnswered && quizAnswers._seasonAnswered &&
+               quizAnswers._calcAnswered && quizAnswers._recallAnswered &&
+               quizAnswers.name !== null;
+  document.getElementById('step2Next').disabled = !done;
+  if(done){
+    quizScore = 0;
+    quizScore += quizAnswers.register ? 0 : 1.5;
+    quizScore += quizAnswers.date ? 0 : 2;
+    quizScore += quizAnswers.season ? 0 : 1;
+    quizScore += quizAnswers.calc ? 0 : 2;
+    quizScore += (3 - quizAnswers.recall); // 3개 맞음=0점, 2개=1점, 1개=2점, 0개=3점
+    quizScore += quizAnswers.name === 'no' ? 2 : 0;
+  }
+}
+
+/* ---------------- 결과 ---------------- */
+function showResult(){
+  const total = checklistScore + quizScore;
+  let tier, tierIdx, title, msg, showClinic;
+
+  if(total <= 5){
+    tierIdx = 0; tier="정상"; title="오늘은 특별한 신호가 보이지 않아요";
+    msg = "체크한 항목들에서 뚜렷한 위험 신호는 확인되지 않았어요. 그래도 이런 시간을 정기적으로 가져보시는 것 자체가 큰 의미가 있어요.";
+    showClinic = false;
+  } else if(total <= 10){
+    tierIdx = 1; tier="위험군"; title="몇 가지 확인이 필요해 보여요";
+    msg = "일부 항목에서 평소와 다른 모습이 확인됐어요. 대부분 자연스러운 노화 과정일 수 있지만, 편하게 한번 상담받아보시는 것도 좋은 방법이에요.";
+    showClinic = true;
+  } else if(total <= 16){
+    tierIdx = 2; tier="고위험군"; title="정밀 검사를 권해드려요";
+    msg = "여러 항목에서 반복적인 어려움이 확인됐어요. 조기 발견과 관리가 무엇보다 중요한 시기이니, 가까운 시일 내 전문의 상담을 받아보시길 권해드려요.";
+    showClinic = true;
+  } else {
+    tierIdx = 3; tier="내원 필요군"; title="가까운 시일 내 전문의를 만나보세요";
+    msg = "여러 영역에서 뚜렷한 어려움의 신호가 확인됐어요. 지금 바로 진단을 의미하지는 않지만, 정확한 확인을 위해 전문의 상담을 받아보시길 권해드려요.";
+    showClinic = true;
+  }
+
+  const area = document.getElementById('resultArea');
+  area.innerHTML = `
+    <div class="result-badge tier-${tierIdx}">
+      <span class="tag">체크 결과</span>
+      ${tier}
+    </div>
+    <h1 style="font-size:20px;">${title}</h1>
+    <p class="result-msg">${msg}</p>
+    ${showClinic ? `
+    <div class="clinic-card">
+      <div class="clinic-map" style="margin-bottom:16px; border-radius:10px; overflow:hidden; border:1px solid var(--line);">
+        <iframe
+          src="https://www.google.com/maps?q=%EB%8C%80%EA%B5%AC%EA%B4%91%EC%97%AD%EC%8B%9C%20%EB%8B%AC%EC%84%9C%EA%B5%AC%20%EB%8B%AC%EA%B5%AC%EB%B2%8C%EB%8C%80%EB%A1%9C%201814&output=embed"
+          width="100%" height="180" style="border:0; display:block;" loading="lazy">
+        </iframe>
+      </div>
+      <div class="name" style="display:flex; align-items:center; gap:8px;">
+        <img src="logo.png" alt="경일신경과내과의원 로고"
+             style="width:22px; height:22px; object-fit:contain; flex:none;"
+             onerror="this.onerror=null; this.src='data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%2222%22 height=%2222%22><rect width=%2222%22 height=%2222%22 rx=%224%22 fill=%22%23F1F6F4%22 stroke=%22%23D8DED2%22/></svg>';">
+        <span>경일신경과내과의원</span>
+      </div>
+      <div class="info">
+        전화 문의 · 053-652-2525<br>
+        진료시간 · 08:00–18:00 (12:30–14:00 휴게)<br>
+        위치 · 대구광역시 달서구 달구벌대로 1814
+      </div>
+    </div>` : ''}
+    <button class="share-btn" onclick="shareResult()">가족에게 공유하기</button>
+    <div class="disclaimer">이 결과는 의학적 진단이 아닌 참고용 선별 도구입니다. 정확한 진단은 전문의 상담을 통해 받으시기 바랍니다.</div>
+    <div class="restart" onclick="restart()">처음부터 다시 하기</div>
+  `;
+  goTo(3);
+}
+
+function shareResult(){
+  const shareData = {
+    title: '부모님과 함께, 5분 기억 체크',
+    text: '경일신경과내과의원에서 만든 간단한 기억 체크, 부모님과 함께 해보세요.',
+    url: window.location.href
+  };
+  if(navigator.share){
+    navigator.share(shareData).catch(()=>{});
+  } else {
+    navigator.clipboard.writeText(shareData.url).then(()=>{
+      alert('링크가 복사되었어요. 가족에게 붙여넣기 해서 공유해보세요.');
+    });
+  }
+}
+
+function restart(){
+  checklistAnswers = new Array(checklistItems.length).fill(null);
+  quizAnswers = { date:false, season:false, recall:0, calc:false, name:null };
+  recallChecked = [false,false,false];
+  checklistScore = 0; quizScore = 0;
+  renderChecklist();
+  renderQuiz();
+  document.getElementById('step1Next').disabled = true;
+  document.getElementById('step2Next').disabled = true;
+  goTo(0);
+}
+</script>
 </body>
 </html>
